@@ -1,0 +1,8 @@
+.indexButton {
+    display:inline-block;
+    padding:5px 10px;
+    background:#007bff;
+    color:white;
+    border-radius:5px;
+    text-decoration:none;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>List</title>
+</head>
+<body>
+<h2>List.html</h2>
+<table>
+    <tr>
+        <th>id</th>
+        <th>uid</th>
+        <th>password</th>
+        <th>email</th>
+        <th>상세조회</th>
+        <th>삭제</th>
+    </tr>
+    <tr th:each="user: ${userList}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.uid}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.email}"></td>
+        <td>
+<!--            query string /user?id=1
+                rest api /user/1 -->
+            <a th:href="@{|/member/${user.id}|}">조회</a>
+        </td>
+        <td>
+            <a th:href="@{|/member/delete/${user.id}|}">삭제</a>
+        </td>
+    </tr>
+</table>
+<a href="/" class="indexButton">Go to index</a>
+</body>
+</html>

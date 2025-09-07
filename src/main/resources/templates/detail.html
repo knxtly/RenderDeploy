@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Detail</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>id</th>
+        <th>uid</th>
+        <th>password</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.uid}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.email}"></td>
+    </tr>
+</table>
+<a href="/member/" class="indexButton">Go to List</a>
+<a href="/" class="indexButton">Go to index</a>
+</body>
+</html>

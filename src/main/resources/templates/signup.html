@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <title>Signup</title>
+</head>
+<body>
+<h1>Welcome to Sign up Page!!</h1>
+<form action="/member/signup" method="post">
+    아이디: <input type="text" name="uid"><br>
+    비밀번호: <input type="password" name="password"><br>
+    이메일: <input type="text" name="email"><br>
+    <input type="submit" value="회원가입">
+</form>
+<a href="/" class="indexButton">Go to index</a>
+
+</body>
+</html>
