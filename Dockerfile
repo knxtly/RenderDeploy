@@ -5,7 +5,7 @@ WORKDIR /app
 RUN gradle build -x test --no-daemon
 
 # Run stage
-FROM eclipse-temurin:17-jdk-jammy
+FROM eclipse-temurin:17-jre-jammy
 COPY --from=build /app/build/libs/*.jar app.jar
 
 # 보안: non-root user
