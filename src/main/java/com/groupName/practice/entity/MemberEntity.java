@@ -8,7 +8,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "user") // database에 "user" table 생성
+@Table(name = "customer") // database에 "user" table 생성
 public class MemberEntity { // table 역할
     // jpa => database를 객체처럼 사용가능
 
@@ -16,7 +16,7 @@ public class MemberEntity { // table 역할
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length=50)
     private String uid;
 
     @Column(nullable = false, length = 30)
