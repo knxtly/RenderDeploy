@@ -1,29 +1,16 @@
-# =========================
-# 1. 빌드 단계
-# =========================
-FROM eclipse-temurin:17-jdk-jammy AS build
+# Build stage
+FROM gradle:jdk17-jammy AS build
+COPY --chown=gradle:gradle . /app
 WORKDIR /app
+RUN gradle build -x test --no-daemon
 
-# Gradle wrapper와 소스 복사
-COPY gradlew ./gradlew
-COPY gradle ./gradle
-COPY build.gradle settings.gradle ./
-COPY src ./src
+# Run stage
+FROM eclipse-temurin:17-jdk-jammy
+COPY --from=build /app/build/libs/*.jar app.jar
 
-# gradlew 실행 권한 부여
-RUN chmod +x ./gradlew
-
-# Gradle 빌드 (테스트 제외)
-RUN ./gradlew clean build -x test --no-daemon
-
-# =========================
-# 2. 실행 단계
-# =========================
-FROM eclipse-temurin:17-jre-jammy
-WORKDIR /app
-
-# 빌드된 jar 복사
-COPY --from=build /app/build/libs/practice-0.0.1-SNAPSHOT.jar app.jar
+# 보안: non-root user
+RUN useradd -m appuser
+USER appuser
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
